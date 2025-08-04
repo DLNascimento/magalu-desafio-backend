@@ -23,7 +23,7 @@ public class SchedulingService {
     public SchedulingOutDTO newCommunicationSchedule(SchedulingDTO schedulingDTO) {
 
         Scheduling schedulingEntity = schedulingMapper.paraSchedulingEntity(schedulingDTO);
-        schedulingEntity.setLocalDateTime(LocalDateTime.now());
+        schedulingEntity.setCreationDate(LocalDateTime.now());
         schedulingEntity.setNotificationStatusType(NotificationStatusType.PENDING);
         schedulingRepository.save(schedulingEntity);
         return schedulingMapper.paraSchedulingOutDTO(schedulingEntity);
@@ -36,5 +36,18 @@ public class SchedulingService {
                 () -> new NotFoundException("Id não encontrado")));
 
     }
+
+    public void cancelScheduling(Long id) {
+
+        Scheduling schedulingEntity = schedulingRepository.findById(id).orElseThrow(
+                () -> new NotFoundException("id não encontrado"));
+
+        schedulingEntity.setNotificationStatusType(NotificationStatusType.CANCELLED);
+
+        schedulingMapper.paraSchedulingOutDTO(schedulingRepository.save(schedulingEntity));
+
+
+    }
+
 
 }

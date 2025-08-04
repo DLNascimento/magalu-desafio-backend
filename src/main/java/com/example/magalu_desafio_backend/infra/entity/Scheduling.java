@@ -24,9 +24,9 @@ public class Scheduling {
 
     private String message;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime creationDate;
 
-    private LocalDateTime schedulingLocalDateTime;
+    private LocalDateTime schedulingDate;
 
     @Enumerated(EnumType.STRING)
     private NotificationStatusType notificationStatusType;

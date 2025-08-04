@@ -16,15 +16,21 @@ public class SchedulingController {
 
 
     @PostMapping
-    public ResponseEntity<SchedulingOutDTO> newCommunicationSchedule(@RequestBody SchedulingDTO schedulingDTO){
+    public ResponseEntity<SchedulingOutDTO> newCommunicationSchedule(@RequestBody SchedulingDTO schedulingDTO) {
 
         return ResponseEntity.ok(schedulingService.newCommunicationSchedule(schedulingDTO));
 
     }
 
-    @GetMapping
-    public ResponseEntity<SchedulingOutDTO> getCommunicationScheduleById(@RequestParam("id") Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<SchedulingOutDTO> getCommunicationScheduleById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(schedulingService.getCommunicationSchedules(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> cancelScheduling(@PathVariable("id") Long id) {
+        schedulingService.cancelScheduling(id);
+        return ResponseEntity.ok().build();
     }
 
 }
