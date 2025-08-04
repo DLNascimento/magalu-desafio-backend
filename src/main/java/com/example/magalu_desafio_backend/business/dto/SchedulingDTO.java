@@ -5,6 +5,6 @@ import com.example.magalu_desafio_backend.infra.entity.NotificationStatusType;
 import java.time.LocalDateTime;
 
 public record SchedulingDTO(String emailAddressee, String phoneAddressee,
-                            String message, LocalDateTime localDateTime,
+                            String message, LocalDateTime schedulingLocalDateTime,
                             NotificationStatusType notificationStatusType) {
 }
