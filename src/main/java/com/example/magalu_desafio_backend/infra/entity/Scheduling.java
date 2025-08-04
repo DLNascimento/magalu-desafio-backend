@@ -20,9 +20,9 @@ public class Scheduling {
 
     private String emailAddressee;
 
-    private String message;
-
     private String phoneAddressee;
+
+    private String message;
 
     private LocalDateTime localDateTime;
 
