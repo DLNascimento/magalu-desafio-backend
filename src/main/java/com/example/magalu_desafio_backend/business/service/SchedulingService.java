@@ -24,7 +24,7 @@ public class SchedulingService {
 
         Scheduling schedulingEntity = schedulingMapper.paraSchedulingEntity(schedulingDTO);
         schedulingEntity.setCreationDate(LocalDateTime.now());
-        schedulingEntity.setNotificationStatusType(NotificationStatusType.PENDING);
+        schedulingEntity.setNotificationStatusType(NotificationStatusType.SCHEDULED);
         schedulingRepository.save(schedulingEntity);
         return schedulingMapper.paraSchedulingOutDTO(schedulingEntity);
 
