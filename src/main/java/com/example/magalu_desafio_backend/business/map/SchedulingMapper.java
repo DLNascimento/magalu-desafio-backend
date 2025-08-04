@@ -1,6 +1,7 @@
 package com.example.magalu_desafio_backend.business.map;
 
 import com.example.magalu_desafio_backend.business.dto.SchedulingDTO;
+import com.example.magalu_desafio_backend.business.dto.SchedulingOutDTO;
 import com.example.magalu_desafio_backend.infra.entity.Scheduling;
 import org.mapstruct.Mapper;
 
@@ -8,6 +9,6 @@ import org.mapstruct.Mapper;
 public interface SchedulingMapper {
 
     Scheduling paraSchedulingEntity(SchedulingDTO schedulingDTO);
-    SchedulingDTO paraSchedulingDTO(Scheduling scheduling);
+    SchedulingOutDTO paraSchedulingOutDTO(Scheduling scheduling);
 
 }

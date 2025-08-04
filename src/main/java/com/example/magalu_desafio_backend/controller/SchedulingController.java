@@ -1,6 +1,7 @@
 package com.example.magalu_desafio_backend.controller;
 
 import com.example.magalu_desafio_backend.business.dto.SchedulingDTO;
+import com.example.magalu_desafio_backend.business.dto.SchedulingOutDTO;
 import com.example.magalu_desafio_backend.business.service.SchedulingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class SchedulingController {
 
 
     @PostMapping
-    public ResponseEntity<SchedulingDTO> saveNewScheduling(@RequestBody SchedulingDTO schedulingDTO, Long id){
+    public ResponseEntity<SchedulingOutDTO> newCommunicationSchedule(@RequestBody SchedulingDTO schedulingDTO){
 
-        return ResponseEntity.ok(schedulingService.schedulingCommunication(schedulingDTO, id));
+        return ResponseEntity.ok(schedulingService.newCommunicationSchedule(schedulingDTO));
 
     }
 
