@@ -42,7 +42,7 @@ public class SchedulingService {
         Scheduling schedulingEntity = schedulingRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("id não encontrado"));
 
-        schedulingEntity.setNotificationStatusType(NotificationStatusType.CANCELLED);
+        schedulingEntity.setNotificationStatusType(NotificationStatusType.CANCELED);
 
         schedulingMapper.paraSchedulingOutDTO(schedulingRepository.save(schedulingEntity));
 
