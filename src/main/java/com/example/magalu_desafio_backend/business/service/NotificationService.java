@@ -34,9 +34,9 @@ public class NotificationService {
 
     }
 
-    @Scheduled(fixedRate = 60000) // 60 segundos
+    @Scheduled(fixedRate = 60000)
     public void checkStatus(){
-        log.info("Começando a rodar o scheduled");
+        log.info("Checando o status de cada agendamento");
         List<Notification> scheduled = notificationRepository.findByStatusType(StatusType.SCHEDULED);
 
         for (Notification notification : scheduled){
