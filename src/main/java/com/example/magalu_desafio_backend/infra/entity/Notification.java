@@ -5,14 +5,14 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "scheduling")
-@Table(name = "tb_scheduling")
+@Entity
+@Table(name = "tb_notification")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Scheduling {
+public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +29,5 @@ public class Scheduling {
     private LocalDateTime schedulingDate;
 
     @Enumerated(EnumType.STRING)
-    private NotificationStatusType notificationStatusType;
+    private StatusType statusType;
 }
