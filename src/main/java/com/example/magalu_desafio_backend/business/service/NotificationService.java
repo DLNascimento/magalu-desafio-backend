@@ -8,12 +8,16 @@ import com.example.magalu_desafio_backend.infra.entity.Notification;
 import com.example.magalu_desafio_backend.infra.exceptions.NotFoundException;
 import com.example.magalu_desafio_backend.infra.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class NotificationService {
 
     private final NotificationRepository notificationRepository;
@@ -29,6 +33,23 @@ public class NotificationService {
         return notificationMapper.paraNotificationOutDTO(notificationEntity);
 
     }
+
+    @Scheduled(fixedRate = 60000) // 60 segundos
+    public void checkStatus(){
+        log.info("Começando a rodar o scheduled");
+        List<Notification> scheduled = notificationRepository.findByStatusType(StatusType.SCHEDULED);
+
+        for (Notification notification : scheduled){
+            if (!notification.getSchedulingDate().isAfter(LocalDateTime.now())){
+                log.info("Checando se tem algum agendamento fora do horario agendado");
+                notification.setStatusType(StatusType.SENT);
+                log.info("Trocando o Status para enviado/sent");
+                notificationRepository.save(notification);
+            }
+        }
+    }
+
+
 
     public NotificationOutDTO getCommunicationSchedules(Long id) {
 
