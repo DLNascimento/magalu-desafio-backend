@@ -43,14 +43,14 @@ public class NotificationServiceTest {
     @BeforeEach
     void setup() {
         notificationDTO = new NotificationDTO(
-                "diego@email.com",
+                "emailteste@email.com",
                 "12321314",
                 "Olá mundo",
                 LocalDateTime.now().plusHours(1));
 
         notification = new Notification(
                 1L,
-                "diego@email.com",
+                "emailteste@email.com",
                 "12321314",
                 "Olá mundo!",
                 LocalDateTime.now(),
@@ -59,7 +59,7 @@ public class NotificationServiceTest {
 
 
         notificationOutDTO = new NotificationOutDTO(1L,
-                "diego@email.com",
+                "emailteste@email.com",
                 "12321314",
                 "Olá mundo!",
                 LocalDateTime.now().plusHours(1),
@@ -120,8 +120,8 @@ public class NotificationServiceTest {
     void MustUpdateStatusToSentWhenPastTime(){
 
         Notification later = new Notification(2L,
-                "joao",
-                "joao@email.com",
+                "emailteste",
+                "313134532",
                 "Olá mundo!",
                 LocalDateTime.now(),
                 LocalDateTime.now().minusHours(1),
