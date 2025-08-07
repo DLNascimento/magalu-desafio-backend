@@ -13,14 +13,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class NotificationServiceTest {
@@ -109,6 +110,25 @@ public class NotificationServiceTest {
         assertEquals(StatusType.CANCELED, notification.getStatusType());
         verify(notificationRepository).save(notification);
     }
+
+    @Test
+    void shouldThrowBadRequestWhenStatusIsNotScheduled() {
+        notification.setStatusType(StatusType.SENT);
+
+        when(notificationRepository.findById(1L)).thenReturn(Optional.of(notification));
+
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
+            notificationService.cancelScheduling(1L);
+        });
+
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Somente quando o status for SCHEDULED é possível fazer o cancelamento", exception.getReason());
+
+        verify(notificationRepository).findById(1L);
+        verifyNoMoreInteractions(notificationRepository);
+    }
+
+
 
     @Test
     void shouldReturnExceptionNotFoundById(){
