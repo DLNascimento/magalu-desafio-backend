@@ -15,6 +15,7 @@ Este projeto foi desenvolvido como parte de um desafio técnico para uma vaga ba
 - ✅ **MapStruct**
 - ✅ **JUnit 5**
 - ✅ **Mockito**
+- ✅ **Swagger Ui(Springdoc OpenAPI)**
 
 ---
 
@@ -25,6 +26,23 @@ Este projeto foi desenvolvido como parte de um desafio técnico para uma vaga ba
 - ✅ Cancelar notificações agendadas.
 - ✅ Alterar automaticamente o status de notificações vencidas (de `SCHEDULED` para `SENT`).
 - ✅ Testes unitários cobrindo os principais métodos da camada de serviço.
+
+---
+
+## 📄 Documentação da API
+
+A aplicação possui documentação automática da API REST gerada com **Swagger**, através do SpringDoc OpenAPI.
+
+### ▶️ Acesse em tempo de execução:
+
+- [`http://localhost:8080/swagger-ui/index.html`](http://localhost:8080/swagger-ui/index.html)
+
+### 💡 Com o Swagger, você pode:
+
+- Visualizar todos os endpoints da API.
+- Ver exemplos de requisição e resposta.
+- Testar os endpoints diretamente pela interface web.
+- Entender os contratos HTTP (status, headers, bodies).
 
 ---
 
